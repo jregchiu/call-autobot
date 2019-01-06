@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Call Autobot</h1>
+    <p class="lead">Next Autobot call available in the middle of the night? Schedule it with us so you don't waste time.</p>
+    <hr class="my-4">
+    <p>Because we're calling Autobot, we need access to your CS ugrad Github account and repos. We only use this access to POST a comment to the commit you specify, at the time you specify.</p>
+    <a class="btn btn-lg btn-social btn-github" href={{ authorization_url }}>
+      <span class="fab fa-github"></span> Sign in with Github
+    </a>
+  </div>
+</div>
+{% endblock %}
