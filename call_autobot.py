@@ -65,4 +65,5 @@ def schedule():
 @celery.task
 def call_autobot(token, url, body):
     github = OAuth2(client_id, token=token)
-    requests.post(url, data={"body": body}, auth=github)
+    r = requests.post(url, data={"body": body}, auth=github)
+    print(r.json())
