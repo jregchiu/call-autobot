@@ -23,7 +23,7 @@ token_url = 'https://github.ugrad.cs.ubc.ca/login/oauth/access_token'
 
 @app.route("/")
 def index():
-    if 'oauth_key' not in session:
+    if 'oauth_token' not in session:
         github = OAuth2Session(client_id=client_id, scope="repo")
         authorization_url, state = github.authorization_url(authorization_base_url)
         session['oauth_state'] = state
@@ -41,7 +41,7 @@ def callback():
 
 @app.route("/schedule", methods=["GET", "POST"])
 def schedule():
-    if 'oauth_key' not in session:
+    if 'oauth_token' not in session:
         return redirect(url_for("index"))
 
     if request.method == "GET":
