@@ -9,7 +9,7 @@ from celery import Celery
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET', 'dev')
-app.wsgi_app = ProxyFix(app.wsgi_app)
+# app.wsgi_app = ProxyFix(app.wsgi_app)
 
 rabbitmq_url = os.environ.get('CLOUDAMQP_URL', "amqp://localhost")
 celery = Celery(__name__, broker=rabbitmq_url, broker_pool_limit=1)
