@@ -18,7 +18,7 @@ celery = Celery(__name__, broker=rabbitmq_url, broker_pool_limit=1)
 client_id = os.environ['GITHUB_CLIENT_ID']
 client_secret = os.environ['GITHUB_CLIENT_SECRET']
 base_url = 'https://github.ugrad.cs.ubc.ca'
-api_url = 'https://github.ugrad.cs.ubc.ca/api/v3'
+api_url = 'https://github.ugrad.cs.ubc.ca/api/v3/repos'
 authorization_base_url = 'https://github.ugrad.cs.ubc.ca/login/oauth/authorize'
 token_url = 'https://github.ugrad.cs.ubc.ca/login/oauth/access_token'
 
@@ -53,7 +53,8 @@ def schedule():
         dt = request.form['datetime']
         token = session['oauth_token']
 
-        url = url.replace(base_url, api_url)
+        url = url.replace(base_url, api_url).replace('commit', 'commits')
+        url = url + '/comments'
         naive_dt = datetime.strptime(dt, '%Y-%m-%dT%H:%M')
         vancouver = timezone('America/Vancouver')
         vancouver_dt = vancouver.localize(naive_dt)
@@ -66,4 +67,3 @@ def schedule():
 def call_autobot(token, url, body):
     github = OAuth2(client_id, token=token)
     r = requests.post(url, data={"body": body}, auth=github)
-    print(r.json())
