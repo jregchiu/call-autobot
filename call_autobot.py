@@ -67,3 +67,4 @@ def schedule():
 def call_autobot(token, url, body):
     github = OAuth2(client_id, token=token)
     r = requests.post(url, data={"body": body}, auth=github)
+    print(r.json())
