@@ -12,7 +12,7 @@ app.secret_key = os.environ.get('FLASK_SECRET', 'dev')
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
 rabbitmq_url = os.environ.get('CLOUDAMQP_URL', "amqp://localhost")
-celery = Celery(__name__, broker=rabbitmq_url)
+celery = Celery(__name__, broker=rabbitmq_url, broker_pool_limit=1)
 
 client_id = os.environ['GITHUB_CLIENT_ID']
 client_secret = os.environ['GITHUB_CLIENT_SECRET']
