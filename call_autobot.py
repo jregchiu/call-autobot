@@ -4,6 +4,7 @@ from pytz import timezone
 import pytz
 from flask import Flask, request, redirect, session, url_for, render_template
 from werkzeug.contrib.fixers import ProxyFix
+import requests
 from requests_oauthlib import OAuth2, OAuth2Session
 from celery import Celery
 
@@ -64,4 +65,4 @@ def schedule():
 @celery.task
 def call_autobot(token, url, body):
     github = OAuth2(client_id, token=token)
-    github.post(url, data={"body": body})
+    requests.post(url, data={"body": body}, auth=github)
