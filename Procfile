@@ -1,2 +1,2 @@
 web: gunicorn call_autobot:app
-worker: celery worker --app:call_autobot.py
+worker: celery worker -A call_autobot:celery
