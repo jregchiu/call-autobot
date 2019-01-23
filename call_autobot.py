@@ -61,6 +61,7 @@ def schedule():
         utc_dt = vancouver_dt.astimezone(pytz.utc)
 
         call_autobot.apply_async(args=(token, url, comment), eta=utc_dt)
+        flash('Successfully scheduled your call!')
         return render_template("schedule.html")
 
 @celery.task
