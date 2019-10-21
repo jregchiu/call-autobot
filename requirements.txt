@@ -20,4 +20,4 @@ six==1.12.0
 urllib3==1.24.1
 URLObject==2.4.3
 vine==1.1.4
-Werkzeug==0.14.1
+Werkzeug==0.15.3
